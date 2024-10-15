@@ -2,7 +2,7 @@
 
 - searching telomeres across the plant and human genome across tree of life for reassembly of those telomere specific regions. 
 - a kmer based approach to search for the matching telomere and then extract the upstream and the downstream of the matching telomere for reassembly of those regions.
-- the tolkit version is present here [tolkit](https://github.com/tolkit), which only plots the kmers and not tell where to look and doesnt provide support for reassembly.
+- the tolkit version is present here [tolkit](https://github.com/tolkit/telomeric-identifier), which only plots the kmers and not tell where to look and doesnt provide support for reassembly.
 - the clade specific sets are also present in this repository, which are used in the tolkit for the search. 
 - tolkit doesnt allow for the telomere extraction for re-assembly and go-telomeres-graph provide that. 
 
