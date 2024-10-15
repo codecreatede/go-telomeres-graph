@@ -1,0 +1,1 @@
+UpStream Region of the Telomere	Downstream Region of the Telomere	Telomere with the upstream and downstream regionGCCCAATGAC	CGTGTCTAGC	GCCCAATGACATCGGCGTGTCTAGC

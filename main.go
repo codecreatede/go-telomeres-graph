@@ -144,9 +144,6 @@ func matchTelomer(cmd *cobra.Command, args []string) {
 		}
 	}
 
-	for i := range selectedOnes {
-		fmt.Println(selectedOnes[i], selectedStart[i], selectedEnd[i])
-	}
 	for i := range upStreamSelectedOnes {
 		fmt.Println(
 			upStreamSelectedOnes[i],
@@ -155,5 +152,46 @@ func matchTelomer(cmd *cobra.Command, args []string) {
 			"\n",
 			addUpDownStream[i],
 		)
+	}
+
+	file, err := os.Create("telomeres.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	file.WriteString(
+		"UpStream Region of the Telomere" + "\t" + "Downstream Region of the Telomere" + "\t" + "Telomere with the upstream and downstream region",
+	)
+	for i := range upStreamSelectedOnes {
+		file.WriteString(
+			upStreamSelectedOnes[i] + "\t" + downStreamSelectedOnes[i] + "\t" + addUpDownStream[i],
+		)
+	}
+
+	upstream, err := os.Create("upstream.fasta")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer upstream.Close()
+	for i := range upStreamSelectedOnes {
+		upstream.WriteString(">" + "\n" + upStreamSelectedOnes[i] + "\n")
+	}
+
+	downstream, err := os.Create("downstream.fasta")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer downstream.Close()
+	for i := range upStreamSelectedOnes {
+		downstream.WriteString(">" + "\n" + downStreamSelectedOnes[i] + "\n")
+	}
+
+	combined, err := os.Create("reassemble.fasta")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer combined.Close()
+	for i := range upStreamSelectedOnes {
+		combined.WriteString(">" + "\n" + addUpDownStream[i] + "\n")
 	}
 }
